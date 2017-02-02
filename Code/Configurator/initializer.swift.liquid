@@ -1,0 +1,22 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Foundation
+import Jump
+
+class {{ module_info.name }}ModuleInitializer: NSObject {
+
+    //Connect with object on storyboard
+    @IBOutlet weak var {{ module_info.name | downcase }}ViewController: {{ module_info.name }}ViewController!
+
+    override func awakeFromNib() {
+        let presenter = {{ module_info.name }}Presenter()
+        let router = {{ module_info.name }}Router()
+        {{ module_info.name }}ModuleConfigurator.inject({{ module_info.name | downcase }}ViewController, presenter, router)
+    }
+}

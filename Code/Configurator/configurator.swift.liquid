@@ -1,0 +1,36 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+import Jump
+
+class {{ module_info.name }}ModuleConfigurator: DependencyConfigurator {
+
+    typealias View = {{ module_info.name }}ViewController
+    typealias Presenter = {{ module_info.name }}Presenter
+    typealias Router = {{ module_info.name }}Router
+    
+    static var moduleFactory: ModuleFactory {
+        //let storyboard = <#insert storyboard here#>//UIStoryboard(name: "{{ module_info.name }}Storyboard", bundle: Bundle.main)
+        let storyboard = UIStoryboard.storyboardWithIdentifier(identifier: .<#storyboard name#>)
+
+        return ModuleFactory(storyboard: storyboard,
+                             identifier: {{ module_info.name }}ViewController.nameOfClass)
+        
+    }
+    class func inject(_ view: View, _ presenter: Presenter, _ router: Router) {
+        view.presenter = presenter
+        
+        presenter.view = view
+        presenter.router = router
+        
+        router.transitionHandler = view        
+    }
+
+
+}
